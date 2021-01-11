@@ -4,7 +4,9 @@ class TodoForm extends React.Component {
     constructor() {
         super();
         this.state = {
-          textInput:"" 
+          textInput:"",
+          id:"",
+          completed:false
         }
       }
 
@@ -23,9 +25,10 @@ class TodoForm extends React.Component {
     render(){
         console.log(this.props)
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form >
                 <input onChange = {this.handleChanges}value={this.state.textInput} type='text' name='task'/>
-                <button>Add Task</button>    
+                <button onClick={this.handleSubmit}>Add Task</button>    
+                <button onClick ={this.props.handleClearClompleted}>Clear Clompleted</button>
             </form>
         )
     }

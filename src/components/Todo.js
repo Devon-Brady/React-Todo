@@ -1,18 +1,21 @@
 import React from 'react';
+import './Todo.css'
  
 
 class Todo extends React.Component{
 constructor(props){
-    super()
+    super();
+    console.log('this is props in todo',props);
 }
-handleClick = () => {
-    this.handleToggle(this.props.task.id);
+handleClick = (e) => {
+    this.props.handleToggle(this.props.task.id);
+    console.log(this.props.task)
 }
 
 render(){
     return(
         <div onClick={this.handleClick}>
-         <p>{this.props.task.task}</p>
+         <p className={this.props.task.completed? 'crossout' : ""}>{this.props.task.task}</p>
         </div>
     )
 

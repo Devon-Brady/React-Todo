@@ -3,7 +3,7 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 
-const todos = [];
+const todos = [{}];
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -33,15 +33,23 @@ class App extends React.Component {
         })
       }
         
-  
+  handleClearClompleted = (e) => {
+    e.preventDefault();
+    const newListofTodos = this.state.todos.filter(item =>{
+      return(!item.completed);
+    });
+    this.setState({
+      todos: newListofTodos
+    })
+  }
 
   render() {
     return (
       <div>
 
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todos={this.state.todos}/>
-        <TodoForm handleAdd={this.handleAdd} handleToggle={this.handleToggle}/>
+        <TodoList todos={this.state.todos} handleToggle={this.handleToggle} />
+        <TodoForm handleAdd={this.handleAdd} handleClearClompleted={this.handleClearClompleted} />
       </div>
 
     );
